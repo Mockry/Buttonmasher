@@ -1,7 +1,7 @@
 //Included libraries
 #include <SFML\Graphics.hpp>
 #include <SFML\Audio.hpp>
-
+#include <string>
 
 
 int main()
@@ -53,6 +53,14 @@ int main()
 	authorText.setString("David Melville");
 	authorText.setPosition(gameWindow.getSize().x / 2 - authorText.getLocalBounds().width / 2, 80);
 
+	int score = 0;
+
+	sf::Text scoreText;
+	scoreText.setFont(gameFont);
+	scoreText.setString("Score: " + std::to_string(score));
+	scoreText.setCharacterSize(30);
+	scoreText.setFillColor(sf::Color::Red);
+	scoreText.setPosition(30, 30);
 
 	//--------------------------------------
 
@@ -79,6 +87,9 @@ int main()
 		}
 
 		// TODO:: update game state
+		score = score + 1;
+		scoreText.setString("Score: " + std::to_string(score));
+
 
 		//TODO: Draw graphics
 		// set background colour
@@ -87,7 +98,7 @@ int main()
 		//draw everything
 		gameWindow.draw(buttonSprite);
 		gameWindow.draw(titleText);
-
+		gameWindow.draw(scoreText);
 		gameWindow.draw(authorText);
 
 		// Display the contents of the window on the screen
