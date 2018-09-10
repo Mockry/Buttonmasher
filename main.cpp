@@ -22,9 +22,9 @@ int main()
 	buttonSprite.setTexture(buttonTexture);
 
 	//create music
-	sf::Music gameMusic;
+	/*sf::Music gameMusic;
 	gameMusic.openFromFile("audio/music.ogg");
-	gameMusic.play();
+	gameMusic.play();*/
 
 
 
@@ -34,6 +34,24 @@ int main()
 		gameWindow.getSize().y / 2 - buttonTexture.getSize().y / 2
 	);
 
+	//Create Font
+	sf::Font gameFont;
+	gameFont.loadFromFile("fonts/mainFont.ttf");
+
+	// create text
+	sf::Text titleText;
+	titleText.setFont(gameFont);
+	titleText.setString("Button Masher");
+	titleText.setCharacterSize(36);
+	titleText.setFillColor(sf::Color::Magenta);
+	titleText.setStyle(sf::Text::Bold | sf::Text::Italic);
+	titleText.setPosition(gameWindow.getSize().x / 2 - titleText.getLocalBounds().width / 2, 30);
+
+
+	sf::Text authorText;
+	authorText.setFont(gameFont);
+	authorText.setString("David Melville");
+	authorText.setPosition(gameWindow.getSize().x / 2 - authorText.getLocalBounds().width / 2, 80);
 
 
 	//--------------------------------------
@@ -68,6 +86,9 @@ int main()
 
 		//draw everything
 		gameWindow.draw(buttonSprite);
+		gameWindow.draw(titleText);
+
+		gameWindow.draw(authorText);
 
 		// Display the contents of the window on the screen
 		gameWindow.display();
