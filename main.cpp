@@ -1,6 +1,6 @@
 //Included libraries
 #include <SFML\Graphics.hpp>
-#include <SFML/Audio.hpp>
+#include <SFML\Audio.hpp>
 
 
 

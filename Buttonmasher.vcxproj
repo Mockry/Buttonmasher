@@ -80,7 +80,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>SFML-2.5.0\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SFML-graphics-d.lib;SFML-window-d.lib;SFML-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SFML-graphics-d.lib;SFML-window-d.lib;SFML-system-d.lib;SFML-audio-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
