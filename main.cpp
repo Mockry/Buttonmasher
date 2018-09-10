@@ -91,7 +91,7 @@ int main()
 		scoreText.setString("Score: " + std::to_string(score));
 
 
-		//TODO: Draw graphics
+		
 		// set background colour
 		gameWindow.clear(sf::Color::Cyan);
 
