@@ -75,6 +75,11 @@ int main()
 	sf::Time timeRemaining = timeLimit;
 	sf::Clock gameClock;
 
+	// click sound effect
+	sf::SoundBuffer clickBuffer;
+	clickBuffer.loadFromFile("audio/buttonclick.ogg");
+	sf::Sound clickSound;
+	clickSound.setBuffer(clickBuffer);
 
 
 	//--------------------------------------
@@ -100,6 +105,7 @@ int main()
 				{
 					//We clicked the button!!!
 					score = score + 1;
+					clickSound.play();
 				}
 			}
 
