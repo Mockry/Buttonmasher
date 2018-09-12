@@ -82,6 +82,8 @@ int main()
 	clickSound.setBuffer(clickBuffer);
 
 
+	bool playing = false;
+
 	//--------------------------------------
 
 
@@ -103,8 +105,19 @@ int main()
 			{
 				if (buttonSprite.getGlobalBounds().contains(gameEvent.mouseButton.x,gameEvent.mouseButton.y))
 				{
-					//We clicked the button!!!
-					score = score + 1;
+					if (playing == true)
+					{
+						score = score + 1;
+					}
+					else
+					{
+						playing = true;
+						score = 0;
+						timeRemaining = timeLimit;
+					}
+
+
+					// plays sound when button is clicked
 					clickSound.play();
 				}
 			}
@@ -119,7 +132,17 @@ int main()
 
 		// TODO:: update game state
 		sf::Time frameTime = gameClock.restart();
-		timeRemaining -= frameTime;
+		
+		if (playing == true)
+		{
+			timeRemaining -= frameTime;
+			if (timeRemaining.asSeconds() <= 0)
+			{
+				playing = false;
+			}
+		}
+
+
 		timerText.setString("Time Remaining: " + std::to_string((int)std::ceilf(timeRemaining.asSeconds())));
 
 
