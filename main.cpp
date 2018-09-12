@@ -53,6 +53,12 @@ int main()
 	authorText.setString("David Melville");
 	authorText.setPosition(gameWindow.getSize().x / 2 - authorText.getLocalBounds().width / 2, 80);
 
+	sf::Text promptText;
+	promptText.setFont(gameFont);
+	promptText.setString("Click Button to Start Game");
+	promptText.setPosition(gameWindow.getSize().x / 2 - promptText.getLocalBounds().width / 2,
+		200);
+
 	int score = 0;
 
 	sf::Text scoreText;
@@ -81,6 +87,11 @@ int main()
 	sf::Sound clickSound;
 	clickSound.setBuffer(clickBuffer);
 
+	sf::SoundBuffer gameoverBuffer;
+	gameoverBuffer.loadFromFile("audio/gameover.ogg");
+	sf::Sound gameoverSound;
+	gameoverSound.setBuffer(gameoverBuffer);
+
 
 	bool playing = false;
 
@@ -108,17 +119,20 @@ int main()
 					if (playing == true)
 					{
 						score = score + 1;
+						clickSound.play();
 					}
 					else
 					{
 						playing = true;
 						score = 0;
 						timeRemaining = timeLimit;
-					}
+						promptText.setString("Click as Fast as You Can!");
 
-
-					// plays sound when button is clicked
-					clickSound.play();
+					}				
+				}
+				else
+				{
+					gameoverSound.play();
 				}
 			}
 
@@ -138,14 +152,14 @@ int main()
 			timeRemaining -= frameTime;
 			if (timeRemaining.asSeconds() <= 0)
 			{
+				gameoverSound.play();
 				playing = false;
+				promptText.setString("Your Final Score Was " + std::to_string(score));
 			}
 		}
 
 
 		timerText.setString("Time Remaining: " + std::to_string((int)std::ceilf(timeRemaining.asSeconds())));
-
-
 
 		scoreText.setString("Score: " + std::to_string(score));
 
@@ -160,6 +174,10 @@ int main()
 		gameWindow.draw(scoreText);
 		gameWindow.draw(authorText);
 		gameWindow.draw(timerText);
+		gameWindow.draw(promptText);
+
+
+
 		// Display the contents of the window on the screen
 		gameWindow.display();
 
